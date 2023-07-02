@@ -1,3 +1,11 @@
 .vs/
 .vscode/
+# ignore .env files
 .env
+
+*.env
+
+./server/venv*
+./server/__pycache__
+.server/_pycache__/
+.server/debug.log

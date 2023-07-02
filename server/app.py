@@ -6,6 +6,7 @@ import pinecone
 import uuid
 import sys
 import logging
+import os
 
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
@@ -13,6 +14,9 @@ from flask import request
 
 from handle_file import handle_file
 from answer_question import get_answer_from_files
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -36,11 +40,11 @@ def load_pinecone_index() -> pinecone.Index:
     """
     Load index from Pinecone, raise error if the index can't be found.
     """
-    pinecone.init(
-        api_key=PINECONE_API_KEY,
-        environment=PINECONE_ENV,
+    pinecone.init(# Get pinecone key from .env file
+        api_key= os.getenv('PINECONE_API_KEY'), 
+        environment=os.getenv('PINECONE_ENV'),
     )
-    index_name = PINECONE_INDEX
+    index_name = os.getenv("PINECONE_INDEX")
     if not index_name in pinecone.list_indexes():
         print(pinecone.list_indexes())
         raise KeyError(f"Index '{index_name}' does not exist.")
