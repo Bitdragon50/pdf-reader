@@ -5,15 +5,24 @@ FROM python:3.8-slim-buster
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-ADD . /app
+COPY . /app
 
 # Install any needed packages specified in requirements.txt
 #RUN pip install --use-pep517
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install --use-pep517 --trusted-host pypi.python.org --disable-pip-version-check -r requirements.txt
+#RUN bash ./script/start 
+
+RUN pip install virtualenv
+RUN python -m virtualenv venv
+RUN ls -la /app
+
+#RUN . env.txt
+RUN . venv/bin/activate
+RUN pip install -r requirements.txt
+
+RUN OPENAI_API_KEY=$OPENAI_API_KEY
 
 # Make port 80 available to the world outside this container
-EXPOSE 80
+EXPOSE 8080
 
 # Run app.py when the container launches
-CMD ["python", "cb-pdf-reader.py"]
+CMD ["python", "app.py"]

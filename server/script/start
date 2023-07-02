@@ -6,5 +6,15 @@ echo "Starting Python server..."
 pip install virtualenv
 python -m virtualenv venv
 source venv/Scripts/activate
-pip install -r requirements.txt
-OPENAI_API_KEY=$1 python app.py
+pip install -r ../requirements.txt
+
+
+# Load environment variables from .env file
+set -a
+source ../.env
+set +a
+
+# Now you can use the OPENAI_API_KEY environment variable in your script
+OPENAI_API_KEY=$OPENAI_API_KEY
+
+#OPENAI_API_KEY=$1 python app.py
