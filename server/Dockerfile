@@ -6,13 +6,13 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY . /app
-
+COPY .env .env
 # Install any needed packages specified in requirements.txt
 #RUN pip install --use-pep517
 #RUN bash ./script/start 
 
 RUN pip install virtualenv
-RUN python -m virtualenv venv
+RUN python -m vi  rtualenv venv
 RUN ls -la /app
 
 #RUN . env.txt
