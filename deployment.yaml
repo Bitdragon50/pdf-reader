@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: server
-          image: pdf-reader-server
+          image: localhost:5000/pdf-reader-server          
+          imagePullPolicy: IfNotPresent
           envFrom:
           - configMapRef:
               name: server-env-map
@@ -58,7 +59,11 @@ spec:
     spec:
       containers:
         - name: client
-          image: pdf-reader-client
+          image: localhost:5000/pdf-reader-client
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SERVER_ADDRESS
+              value: "http://server-service:8080"
           resources:
             limits:
               cpu: "1"

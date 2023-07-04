@@ -1,1 +1,1 @@
-export const SERVER_ADDRESS = "http://localhost:8080";
+export const SERVER_ADDRESS = process.env.SERVER_ADDRESS || "http://localhost:8080";

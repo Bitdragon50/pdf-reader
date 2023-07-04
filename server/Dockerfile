@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim-buster
+FROM python:3.11-bullseye
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY .env .env
 #RUN bash ./script/start 
 
 RUN pip install virtualenv
-RUN python -m vi  rtualenv venv
+RUN python -m virtualenv venv
 RUN ls -la /app
 
 #RUN . env.txt
