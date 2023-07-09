@@ -16,9 +16,9 @@ spec:
         - name: server
           image: localhost:5000/pdf-reader-server          
           imagePullPolicy: IfNotPresent
-          envFrom:
-          - configMapRef:
-              name: server-env-map
+         # envFrom:
+         # - configMapRef:
+             # name: server-env-map
           resources:
             limits:
               cpu: "1"
@@ -82,7 +82,9 @@ metadata:
 spec:
   selector:
     app: client
+  type: NodePort # specify the service type as NodePort
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+      nodePort: 30000 # specify the node port number (must be in the range of 30000-32767)
