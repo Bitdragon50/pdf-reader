@@ -17,4 +17,4 @@ set +a
 # Now you can use the OPENAI_API_KEY environment variable in your script
 OPENAI_API_KEY=$OPENAI_API_KEY
 
-#OPENAI_API_KEY=$1 python app.py
+OPENAI_API_KEY=$1 python ../app.py
